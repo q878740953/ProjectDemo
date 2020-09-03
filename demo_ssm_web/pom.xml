@@ -11,6 +11,16 @@
 
     <artifactId>demo_ssm_web</artifactId>
     <packaging>war</packaging>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>demo_ssm_service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>demo_ssm_dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

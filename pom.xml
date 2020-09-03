@@ -16,6 +16,10 @@
         <module>demo_ssm_domain</module>
     </modules>
     <properties>
+        <!--指定java版本-->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!--指定spring版本-->
         <spring.version>5.2.8.RELEASE</spring.version>
     </properties>
     <dependencies>
@@ -94,6 +98,11 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.23</version>
         </dependency>
     </dependencies>
 
