@@ -16,4 +16,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> finAll() throws Exception{
         return productDao.finAll();
     }
+
+    @Override
+    public void save(Product product) throws Exception {
+        productDao.save(product);
+    }
 }

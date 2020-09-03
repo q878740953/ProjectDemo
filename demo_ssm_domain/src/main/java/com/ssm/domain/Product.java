@@ -1,6 +1,7 @@
 package com.ssm.domain;
 
 import com.ssm.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class Product implements Serializable {
     private String productNum; // 编号，唯一
     private String productName; // 名字
     private String cityName; // 出发城市
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date DepartureTime; // 出发时间
     private String DepartureTimeStr;
     private Double productPrice; // 产品价格

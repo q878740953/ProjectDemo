@@ -38,8 +38,8 @@
     <!--配置事务通知-->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="find*" isolation="DEFAULT"/>
-            <tx:method name="*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="*" isolation="DEFAULT"/>
         </tx:attributes>
     </tx:advice>
     <!--配置aop-->

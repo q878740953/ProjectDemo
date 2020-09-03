@@ -7,4 +7,6 @@ import java.util.List;
 public interface ProductService {
     // 查询所有订单信息
     List<Product> finAll() throws Exception;
+    // 增加产品
+    void save(Product product) throws Exception;
 }

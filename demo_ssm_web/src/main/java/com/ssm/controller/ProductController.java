@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
     @RequestMapping("/findAll")
     public ModelAndView finAll() throws Exception {
         ModelAndView modelAndView = new ModelAndView();
@@ -22,5 +23,11 @@ public class ProductController {
         modelAndView.addObject("productList", products);
         modelAndView.setViewName("product-list");
         return modelAndView;
+    }
+    @RequestMapping("/save")
+    public String save(Product product) throws Exception {
+        System.out.println(product);
+        productService.save(product);
+        return "redirect:findAll";
     }
 }
