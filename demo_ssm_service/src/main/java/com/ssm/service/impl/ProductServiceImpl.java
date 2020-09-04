@@ -21,4 +21,9 @@ public class ProductServiceImpl implements ProductService {
     public void save(Product product) throws Exception {
         productDao.save(product);
     }
+
+    @Override
+    public Product findById(int id) {
+        return productDao.findById(id);
+    }
 }

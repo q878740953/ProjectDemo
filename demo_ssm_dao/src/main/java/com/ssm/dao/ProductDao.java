@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ProductDao {
+    @Select("select * from product where id=#{id}")
+    Product findById(int id);
     @Select("select * from product")
     List<Product> finAll() throws Exception;
     @Insert("insert into product(productNum, productName, cityName, DepartureTime, productDesc, productStatus) values(#{productNum}, #{productName}, #{cityName}, #{DepartureTime}, #{productDesc}, #{productStatus})")
