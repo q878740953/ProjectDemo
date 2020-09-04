@@ -1,12 +1,13 @@
 package com.ssm.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.ssm.domain.Product;
 import com.ssm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,12 +18,11 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping("/findAll")
-    public ModelAndView finAll() throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        List<Product> products = productService.finAll();
-        modelAndView.addObject("productList", products);
-        modelAndView.setViewName("product-list");
-        return modelAndView;
+    public String finAll(Model model, @RequestParam(required = true, defaultValue = "1") int pageNum, @RequestParam(required = true, defaultValue = "5") int pageSize) throws Exception {
+        List<Product> products = productService.finAll(pageNum, pageSize);
+        PageInfo productList = new PageInfo(products);
+        model.addAttribute("productList", productList);
+        return "product-list";
     }
     @RequestMapping("/save")
     public String save(Product product) throws Exception {

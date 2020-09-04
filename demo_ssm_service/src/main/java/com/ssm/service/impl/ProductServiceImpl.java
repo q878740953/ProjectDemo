@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.ssm.dao.ProductDao;
 import com.ssm.domain.Product;
 import com.ssm.service.ProductService;
@@ -13,7 +14,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao; // spring 自动注入
     @Override
-    public List<Product> finAll() throws Exception{
+    public List<Product> finAll(int pageNum, int pageSize) throws Exception{
+        PageHelper.startPage(pageNum, pageSize);
         return productDao.finAll();
     }
 
