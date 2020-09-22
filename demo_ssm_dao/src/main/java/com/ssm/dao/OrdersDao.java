@@ -22,7 +22,16 @@ public interface OrdersDao {
             @Result(property = "product", column = "productId", one = @One(select = "com.ssm.dao.ProductDao.findById")),
 //            @Result(property = "member", column = "memberId", javaType = Member.class, one = @One(select = "select * from member where id=#{memberId}")),
 //            @Result(property = "travellers", column = "travellers"),
-    }
-    )
+    })
     List<Order> findAll();
+    @Select("select * from orders where id=#{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "orderNum", column = "orderNum"),
+            @Result(property = "orderTime", column = "orderTime"),
+            @Result(property = "product", column = "productId", javaType = Product.class, one = @One(select = "com.ssm.dao.ProductDao.findById")),
+            @Result(property = "member", column = "memberId", javaType = Member.class, one = @One(select = "com.ssm.dao.MemberDao.findById")),
+            @Result(property = "travellers", column = "id", javaType = java.util.List.class, many = @Many(select = "com.ssm.dao.travellerDao.findByOrderId"))
+    })
+    Order findById(int id);
 }

@@ -18,11 +18,17 @@ public class OrderController {
     private OrderService ordersService;
     @RequestMapping("/findAll")
     public String findAll(Model model, @RequestParam(required = true, defaultValue = "0")int pageNum, @RequestParam(required = true, defaultValue = "5")int pageSize){
-        System.out.println(pageSize);
         List<Order> orderList = ordersService.findAll(pageNum, pageSize);
         //用PageInfo对结果进行包装
         PageInfo orderPage = new PageInfo(orderList);
         model.addAttribute("orderPage", orderPage);
         return "orders-list";
+    }
+    @RequestMapping("/findById")
+    public String findById(Model model, @RequestParam(name = "id", defaultValue = "1") int id){
+        Order order = ordersService.findById(id);
+        model.addAttribute("order", order);
+        System.out.println(order);
+        return "orders-show";
     }
 }
