@@ -1,9 +1,11 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
+
 /**
  * 会员
  */
-public class Member {
+public class Member implements Serializable {
     private int id; // 无意义、主键uuid
     private String name; // 姓名
     private String nickname; // 昵称
