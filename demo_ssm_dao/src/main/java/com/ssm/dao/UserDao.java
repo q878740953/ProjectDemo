@@ -14,7 +14,7 @@ public interface UserDao {
             @Result(property = "password", column = "password"),
             @Result(property = "phoneNum", column = "phoneNum"),
             @Result(property = "status", column = "status"),
-            @Result(property = "roles", column = "id", javaType = java.util.List.class,many = @Many(select = "com.ssm.dao.RoleDao.findById"))
+            @Result(property = "roles", column = "id", javaType = java.util.List.class,many = @Many(select = "com.ssm.dao.RoleDao.findByUserIdAndRole"))
     })
     UserInfo findByName(String username);
     @Select("select * from users")
@@ -25,7 +25,7 @@ public interface UserDao {
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "username", column = "username"),
-            @Result(property = "roles", column = "id", javaType = java.util.List.class, many = @Many(select = "com.ssm.dao.RoleDao.findById"))
+            @Result(property = "roles", column = "id", javaType = java.util.List.class, many = @Many(select = "com.ssm.dao.RoleDao.findByUserIdAndRole"))
     })
     UserInfo findById(int id);
 }
