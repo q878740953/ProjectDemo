@@ -62,6 +62,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getStatusStr() {
+        if (status == 0){
+            statusStr = "未激活";
+        }else if (status == 1){
+            statusStr = "已激活";
+        }else statusStr = "未知";
         return statusStr;
     }
 
@@ -75,5 +80,19 @@ public class UserInfo implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", status=" + status +
+                ", statusStr='" + statusStr + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

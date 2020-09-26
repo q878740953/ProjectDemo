@@ -32,9 +32,12 @@ http://www.springframework.org/schema/security/spring-security.xsd">
         <!--退出操作，并删除session-->
         <security:logout invalidate-session="true" logout-url="/logout" logout-success-url="/login.jsp"/>
     </security:http>
+    <!--对注册密码进行加密-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <!--切换成数据库中的用户名和密码-->
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="userService">
+            <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 </beans>
