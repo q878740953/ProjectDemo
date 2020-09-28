@@ -49,17 +49,4 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <!--配置事务通知-->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="*" isolation="DEFAULT"/>
-        </tx:attributes>
-    </tx:advice>
-    <!--配置aop-->
-    <aop:config>
-        <!--配置切入点-->
-        <aop:pointcut id="pt1" expression="execution(* com.ssm.service.impl.*.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
-    </aop:config>
 </beans>
