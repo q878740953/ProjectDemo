@@ -6,6 +6,12 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--开启jsr-250的注解支持-->
+<!--    <security:global-method-security jsr250-annotations="enabled"/>-->
+    <!--开启secured注解的支持-->
+    <security:global-method-security secured-annotations="enabled"/>
+    <!--开启注解的支持,可以使用jstl表达式，让资源权限配置更加灵活-->
+<!--    <security:global-method-security pre-post-annotations="enabled"/>-->
     <!--配置不过滤的资源（静态资源以及登录页面啥的）-->
     <security:http pattern="/login.jsp" security="none"/>
     <security:http pattern="/failer.jsp" security="none"/>
