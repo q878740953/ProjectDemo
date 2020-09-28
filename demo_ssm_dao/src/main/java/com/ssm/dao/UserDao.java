@@ -1,5 +1,6 @@
 package com.ssm.dao;
 
+import com.ssm.domain.Role;
 import com.ssm.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -14,7 +15,7 @@ public interface UserDao {
             @Result(property = "password", column = "password"),
             @Result(property = "phoneNum", column = "phoneNum"),
             @Result(property = "status", column = "status"),
-            @Result(property = "roles", column = "id", javaType = java.util.List.class,many = @Many(select = "com.ssm.dao.RoleDao.findByUserIdAndRole"))
+            @Result(property = "roles", column = "id", javaType = java.util.List.class,many = @Many(select = "com.ssm.dao.RoleDao.findUserByIdAndAllRole"))
     })
     UserInfo findByName(String username);
     @Select("select * from users")
@@ -25,7 +26,12 @@ public interface UserDao {
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "username", column = "username"),
-            @Result(property = "roles", column = "id", javaType = java.util.List.class, many = @Many(select = "com.ssm.dao.RoleDao.findByUserIdAndRole"))
+            @Result(property = "roles", column = "id", javaType = java.util.List.class, many = @Many(select = "com.ssm.dao.RoleDao.findUserByIdAndAllRole"))
     })
     UserInfo findById(int id);
+    // 通过用户的id查询出所有的角色
+    @Select("select * from role where id in (select roleId from users_role where userId=#{userId})")
+    List<Role> findAllRole(int userId);
+    @Insert("insert into users_role (userId, roleId) values(#{userId}, #{roleId})")
+    void addRoleToUser(@Param("userId") int userId, @Param("roleId") int roleId);
 }
